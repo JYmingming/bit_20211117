@@ -101,30 +101,25 @@
         {name:'예티 인도' , lat:37.5655634 , lng:126.9233787 , menu:'카레'}
     ]
 
-    showMarkers(arr)
-
-    /*document.querySelector(".menuDiv").addEventListener("click",(e)=>{
+    document.querySelector(".menuDiv").addEventListener("click", (e) => {
         e.preventDefault()
         e.stopPropagation()
 
         const target = e.target
-        console.log(target)
 
-        //이벤트 위임 (강사님 코드)
-
-    },false)*/
-    
-    
-    const tagArr = document.querySelectorAll(".menuDiv > a")
-    for (const testElement of tagArr) {
-        testElement.addEventListener("click", (e) => {
-            e.preventDefault()
-            const target = e.target
-            console.log(target)
-
-        }, false)
-    }
-
+        if(target.tagName !== 'A'){
+            return
+        }
+        console.log("A태그 클릭")
+        const keyword = target.getAttribute("href")
+        console.log(keyword)
+        if(keyword !== '전체'){
+            const result = arr.filter(s => s.menu === keyword)
+            showMarkers(result)
+        }else {
+            showMarkers(arr)
+        }
+    }, false)
 
 </script>
 
